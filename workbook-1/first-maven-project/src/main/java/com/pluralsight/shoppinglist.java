@@ -12,5 +12,9 @@ public class shoppinglist {
         System.out.println("item 8");
         System.out.println("item 9");
         System.out.println("item 10");
+        for (int i=1; i<11 ; i++)
+        {
+            System.out.println("Item " + i);
+        }
     }
 }
