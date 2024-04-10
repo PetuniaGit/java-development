@@ -22,4 +22,4 @@ public class PracticeOperations {
             System.out.println(num7+(Math.pow(10,i)));
         }
     }
-}
+

@@ -11,7 +11,7 @@ public class MathApp {
         double carPrice= 10000;
         double truckPrice=20000;
         double minimum= Math.min(carPrice,truckPrice);
-        System.out.println(minimum);
+        System.out.println("minimum =" + minimum);
         // area of circle with radius 25
         double radius=7.5;
                 double pi=3.14;
