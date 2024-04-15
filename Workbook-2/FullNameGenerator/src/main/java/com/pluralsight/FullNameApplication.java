@@ -17,9 +17,9 @@ public class FullNameApplication {
 
         if (Y.isEmpty()){
             Fullname=X+" "+Z;
-        }
+        } else{ Fullname=X+" "+Y+" "+Z; }
         if (!(A.isEmpty())){
-            Fullname=Fullname+", "+A;
+            Fullname=X+" "+ Y +" "+ Z + " " +A;
         }
         Fullname=Fullname.trim();
         System.out.println(Fullname);
