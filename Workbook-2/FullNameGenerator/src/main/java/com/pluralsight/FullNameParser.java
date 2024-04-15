@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class FullNameParser {
     public static void main(String[] args) {
         Scanner scan=new Scanner(System.in);
-        System.out.println( " Enter your first and last name ." );
+        System.out.println( " Enter your first ,middle and last name ." );
         String Fullname=scan.nextLine();
         Fullname=Fullname.trim();
         System.out.println(Fullname);
