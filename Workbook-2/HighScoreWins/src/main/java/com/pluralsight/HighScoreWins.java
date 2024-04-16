@@ -15,8 +15,10 @@ public class HighScoreWins {
 
         if (score1team>score2team){
             System.out.println("winner is: " + team1);}
-        else {
+        else if (score1team<score2team) {
             System.out.println(" winner is: " + team2);}
+        else {
+            System.out.println( "it was a tie");}
 
     }
 }
