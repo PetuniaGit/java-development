@@ -1,24 +1,26 @@
 package com.pluralsight;
 
+import java.sql.SQLOutput;
+
 public class CellPhone {
     private long serialnumber;
-    private String model;
+    private String Model;
     private String carrier;
     private long phoneNumber;
-    private String owner;
-    public CellPhone( long serialnumber, String model, String carrier, long phoneNumber,String owner) {
+    private String Owner;
+    public CellPhone( long serialnumber, String Model, String carrier, long phoneNumber,String Owner) {
         this.serialnumber=serialnumber;
-        this.model=model;
+        this.Model=Model;
         this.carrier=carrier;
         this.phoneNumber=phoneNumber;
-        this.owner=owner;
+        this.Owner=Owner;
 
     }
     public void setSerialnumber(long serialnumber){
         this.serialnumber=serialnumber;
     }
     public void setModel(String model){
-        this.model=model;
+        this.Model=model;
     }
     public void setCarrier(String carrier){
         this.carrier=carrier;
@@ -27,14 +29,14 @@ public class CellPhone {
         this.phoneNumber=phoneNumber;
     }
     public void setOwner(String owner){
-        this.owner=owner;
+        this.Owner=Owner;
     }
 
     public long getSerialnumber(){
       return  serialnumber;
     }
     public String getModel(){
-       return model;
+       return Model;
     }
     public String getCarrier(){
       return  carrier;
@@ -43,8 +45,10 @@ public class CellPhone {
        return phoneNumber;
     }
     public String getOwner(){
-       return owner;
+       return Owner;
     }
-
+    public void dial ( long phoneNumber ) {
+        System.out.println( Owner+ "'s phone is calling "+ phoneNumber);
+    }
 
 }
