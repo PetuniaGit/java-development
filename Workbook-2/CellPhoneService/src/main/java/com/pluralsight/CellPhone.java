@@ -1,6 +1,6 @@
 package com.pluralsight;
 
-import java.sql.SQLOutput;
+
 
 public class CellPhone {
     private long serialnumber;
@@ -28,7 +28,7 @@ public class CellPhone {
     public void setPhoneNumber(long phoneNumber){
         this.phoneNumber=phoneNumber;
     }
-    public void setOwner(String owner){
+    public void setOwner(String Owner){
         this.Owner=Owner;
     }
 

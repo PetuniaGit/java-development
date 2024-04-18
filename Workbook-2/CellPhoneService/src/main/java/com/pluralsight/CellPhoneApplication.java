@@ -32,9 +32,11 @@ public class CellPhoneApplication {
         System.out.println("Carrier :" + cp1.getCarrier());
         System.out.println( "Phone Number ;" +cp1.getPhoneNumber());
         System.out.println( "Owner :"+ cp1.getOwner());
-        CellPhone cp2=new CellPhone(54653879,"i phone","verison ",68755745,"");
+        CellPhone cp2=new CellPhone(54653879,"i phone","verison ",68755745,"petunia");
          display(cp1);
          display(cp2);
+
+
 
          cp1.dial(cp2.getPhoneNumber());
          cp2.dial(cp1.getPhoneNumber());
@@ -50,5 +52,8 @@ public class CellPhoneApplication {
         System.out.println("Carrier :" + phone.getCarrier());
         System.out.println( "Phone Number ;" + phone.getPhoneNumber());
         System.out.println( "Owner :"+ phone.getOwner());
+
+
+
     }
 }
