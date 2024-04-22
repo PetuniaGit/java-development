@@ -18,7 +18,7 @@ public class Dice {
         for ( int i=1;i<=100;i++){
             roll1=dice.roll();
             roll2=dice.roll();
-            System.out.println("Roll"+ i +",sum=" + roll1 +roll2);
+            System.out.println("Roll"+ i + roll1+ "-" + roll2+",sum=" + roll1 +roll2);
             if (roll1+roll2==2){
                 counter2++;
             }
@@ -32,10 +32,10 @@ public class Dice {
                 counter7++;
             }
         }
-        System.out.println(counter2);
-        System.out.println(counter4);
-        System.out.println(counter6);
-        System.out.println(counter7);
+        System.out.println("Two counter="+counter2);
+        System.out.println( "four counter=" +counter4);
+        System.out.println("six counter="+counter6);
+        System.out.println("seven counter="+ counter7);
 
     }
 }
