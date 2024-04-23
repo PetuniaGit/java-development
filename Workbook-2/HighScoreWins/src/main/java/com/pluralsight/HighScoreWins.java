@@ -7,7 +7,7 @@ public class HighScoreWins {
         Scanner scan= new Scanner(System.in);
         System.out.println( " Enter a team and score information in the form 'Home:Visitor|21:9' ");
         String score= scan.nextLine();
-        String[] scorearray=score.split("[:|:]");
+        String[] scorearray=score.split("[:|]");
         String team1= scorearray[0];
         String team2=scorearray[1];
          int score1team=Integer.parseInt(scorearray[2]);
