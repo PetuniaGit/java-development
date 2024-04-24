@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class SearchInventory {
@@ -15,15 +17,18 @@ public class SearchInventory {
 
     public static ArrayList<Product> getInventory() {
         ArrayList<Product> inventory = new ArrayList<Product>();
-        Product product1=new Product(1,"Soap",4.09f);
-        Product product2=new Product(2,"Body wash",7.09f);
-        Product product3=new Product(3,"Conditioner",8.09f);
-        Product product4=new Product(4,"Shampoo",5.09f);
-        inventory.add(product1);
-        inventory.add(product2);
-        inventory.add(product3);
-        inventory.add(product4);
+      try{  BufferedReader buf=new BufferedReader(new FileReader("inventory.csv"));
+      String line;
+      while((line=buf.readLine())!=null){
+          String[] data=line.split("\\|") ;
+          Product product= new Product(Integer.parseInt(data[0]),data[1],Float.parseFloat(data[2]));
+          inventory.add(product);
+      }
 
+      }
+      catch(Exception e) {
+          System.out.println("There was an error.");
+      }
         return inventory;
     }
 }
