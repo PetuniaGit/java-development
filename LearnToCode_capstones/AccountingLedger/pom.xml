@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.pluralsight</groupId>
-    <artifactId>Accountong-ledger</artifactId>
+    <artifactId>AccountingLedger</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
