@@ -1,11 +1,19 @@
 package com.pluralsight;
 
+import java.time.LocalTime;
+
 public class Employee {
     private int employeeId;
     private String name;
     private String department;
     private double payRate;
     private double hoursWorked;
+    private double clockIn;
+    private double punchInTime;
+    private double punchOutTime;
+
+    public Employee() {
+    }
 
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
         this.employeeId = employeeId;
@@ -58,17 +66,41 @@ public class Employee {
     public double Totalpay(){
         return payRate*hoursWorked;
     }
-    public boolean getRegularHours(){
+    public double getRegularHours(){
         if(hoursWorked<=40){
-            return true;
+            return hoursWorked;
         }
-        else {return false;}
+        else
+        {return 40;}
     }
-    public boolean getOvertimeHours(){
+    public double getOvertimeHours(){
         if(hoursWorked>40){
-            return true;
+            return hoursWorked-40;
         }
-        else {return false;}
+        else
+        {return 0;}
+    }
+       /* public void punchIn(double time){
+        punchInTime=time;
+    }
+
+    public void punchOut(double timeOut){
+        punchOutTime=timeOut;
+        hoursWorked += (punchOutTime - punchInTime);
+    }*/
+
+    public void punchTimeCard(double timeIn, double timeOut){
+        punchInTime = timeIn;
+        punchOutTime = timeOut;
+        hoursWorked += (punchOutTime-punchInTime);
+    }
+
+    public double getTotalPay() {
+        double totalPay;
+        if (getOvertimeHours()>0) {
+            return (payRate * getRegularHours())+(((payRate*1.5))*getOvertimeHours());
+        }
+        return payRate*getRegularHours();
     }
 
 }

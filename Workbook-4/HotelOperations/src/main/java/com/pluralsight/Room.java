@@ -6,6 +6,7 @@ public class Room {
     private double price;
     private boolean isOccupied;
     private boolean isDirty;
+      private String cleanroom;
 
     public Room(int numberOfBeds, double price, boolean isOccupied, boolean isDirty) {
         NumberOfBeds = numberOfBeds;
@@ -51,5 +52,17 @@ public class Room {
            return true;
         }
         return false;
+    }
+    public void checkIn() {
+        isOccupied=true;
+        isDirty=true;
+    }
+    public void checkOut() {
+        cleanroom="yes";
+    }
+    public void cleanroom(){
+        if(isDirty)
+        { cleanroom="yes";}
+        else { cleanroom="no";}
     }
 }

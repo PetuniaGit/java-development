@@ -36,11 +36,11 @@ public class Reservation {
 
   public double getPrice(){
 
-        if (Roomtype=="king"){
+        if (Roomtype.equals("king")){
             return price=139.00;
         }
 else{
-      return price=124;}
+      return price=124.00;}
   }
   public double getReservationTotal(){
         if (isWeekend){
