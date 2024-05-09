@@ -56,13 +56,12 @@ public class Room {
     public void checkIn() {
         isOccupied=true;
         isDirty=true;
+
     }
     public void checkOut() {
-        cleanroom="yes";
+        isOccupied=false;
     }
     public void cleanroom(){
-        if(isDirty)
-        { cleanroom="yes";}
-        else { cleanroom="no";}
+        isDirty=true;
     }
 }
