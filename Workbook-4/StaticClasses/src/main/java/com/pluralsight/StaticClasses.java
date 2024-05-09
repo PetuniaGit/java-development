@@ -12,16 +12,15 @@ public class StaticClasses {
         return String.format("%s, %s %s %s, %s", lastName, prefix, firstName, middleName, suffix);
     }
     public static String format(String fullName){
-        String[] tokens = fullName.split(" ");
-        // tokens
-        if (tokens.length == 5){
-            return String.format("%s %s %s %s, %s", tokens[3],tokens[0],tokens[1],tokens[2],tokens[4]);
-        } else if (tokens.length == 4) {
-            return String.format("%s %s %s, %s", tokens[2],tokens[0],tokens[1],tokens[3]);
-        } else if (tokens.length == 3) {
-            return String.format("%s %s %s", tokens[1], tokens[0],tokens[2]);
-        } else { //tokens.length == 2
-            return String.format("%s, %s", tokens[1],tokens[0]);
+        String[] name = fullName.split(" ");
+        if (name.length == 5){
+            return String.format("%s %s %s %s, %s", name[3], name[0], name[1], name[2], name[4]);
+        } else if (name.length == 4) {
+            return String.format("%s %s %s, %s", name[2], name[0], name[1], name[3]);
+        } else if (name.length == 3) {
+            return String.format("%s %s %s", name[1], name[0], name[2]);
+        } else {
+            return String.format("%s, %s", name[1], name[0]);
         }
     }
 }
