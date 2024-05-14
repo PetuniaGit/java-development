@@ -1,7 +1,7 @@
 package com.pluralsight;
 
 public class Vehicle {
-    protected String color;
+    private String color;
     protected int numberOfPassengers;
     protected int cargoCapacity;
     protected int fuelCapacity;
