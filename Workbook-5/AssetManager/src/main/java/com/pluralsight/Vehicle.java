@@ -44,14 +44,15 @@ public class Vehicle extends Asset {
         int x=ldt.getYear();
        int yeardifference=x-year;
              double price;
+
         if (yeardifference <= 3) {
-            price = getOriginalCost() * Math.pow(0.97, yeardifference);
+            price = getOriginalCost() - (getOriginalCost()*0.03);
         } else if (yeardifference <= 6) {
-            price = getOriginalCost() * Math.pow(0.94, yeardifference);
+            price = getOriginalCost() *(getOriginalCost()*0.06);
         } else if (yeardifference <= 10) {
-            price = getOriginalCost() * Math.pow(0.92, yeardifference);
+            price = getOriginalCost() * (getOriginalCost()*0.08);
         } else {
-            price = 1000.00;
+            price = getOriginalCost()-1000.00;
         }
         if (odometer > 100000 && !makeModel.toLowerCase().contains("honda") && !makeModel.toLowerCase().contains("toyota")) {
             price *= 0.75;
