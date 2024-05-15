@@ -41,6 +41,7 @@ public class Menu {
         System.out.println("what is the height");
         bx1.height=scan.nextDouble();
         System.out.println("The total surface area of the Box is "); bx1.getArea();
+        menu();
     }
 
     private static void AreaRectangle() {
@@ -50,6 +51,7 @@ public class Menu {
         System.out.println("what is the width");
         r1.width=scan.nextDouble();
         System.out.println("The area of the Rectangle is "); r1.getArea();
+        menu();
     }
 
     public static void AreaSquare(){
@@ -59,6 +61,7 @@ public class Menu {
         System.out.println("what is the width");
         sq1.width=scan.nextDouble();
         System.out.println("The area of the square is ");  sq1.getArea();
+        menu();
 
     }
 
