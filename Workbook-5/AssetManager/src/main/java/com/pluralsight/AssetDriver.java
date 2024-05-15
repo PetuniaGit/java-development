@@ -8,7 +8,7 @@ public class AssetDriver {
 
 
         properties.add(new House(" main House", "2012-01-03", 400000, "123 candy cane lane", 1, 2000, 5000));
-        properties.add(new House("Vaccation House", "2020-02-05", 450000, "4578 bernard avenue", 1, 2500, 1000));
+        properties.add(new House("Vacation House", "2020-02-05", 450000, "4578 bernard avenue", 1, 2500, 1000));
         properties.add(new Vehicle("Car", "2021-03-04", 65000, "Tesla", 2014, 80000));
         properties.add(new Vehicle("other Car", "2022-03-04", 30000, "BMW ", 2017, 60000));
 

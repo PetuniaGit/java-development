@@ -48,9 +48,9 @@ public class Vehicle extends Asset {
         if (yeardifference <= 3) {
             price = getOriginalCost() - (getOriginalCost()*0.03);
         } else if (yeardifference <= 6) {
-            price = getOriginalCost() *(getOriginalCost()*0.06);
+            price = getOriginalCost() -(getOriginalCost()*0.06);
         } else if (yeardifference <= 10) {
-            price = getOriginalCost() * (getOriginalCost()*0.08);
+            price = getOriginalCost() - (getOriginalCost()*0.08);
         } else {
             price = getOriginalCost()-1000.00;
         }
