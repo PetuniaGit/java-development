@@ -1,0 +1,4 @@
+Order ID: 20240524-133246
+Items:
+8" rye Sandwich with meats: ham (regular), cheeses: toppings: onions, sauces: , toasted: true
+Total Cost: $9.00
