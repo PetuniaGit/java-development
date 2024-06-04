@@ -27,6 +27,6 @@ FROM Employees;
  GROUP BY supplierID 
  HAVING COUNT(*) >= 5;
  
-SELECT ProductID, ProductName, SUM(UnitPrice * UnitsInStock) AS Total
+ SELECT ProductID, ProductName, (UnitPrice * UnitsInStock) AS Total
  FROM Products
  ORDER BY Total DESC, ProductName;
