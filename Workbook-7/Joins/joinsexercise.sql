@@ -39,11 +39,12 @@ SELECT orderid, shipname, shipaddress, companyname
  WHERE ShipCountry LIKE "Germany";
 
 
+
 SELECT orderid, orderdate, companyname, shipaddress 
 FROM orders
- INNER JOIN shippers
- ON orders.ShipVia = shippers.ShipperID
- WHERE orderid IN (SELECT orderid 
+INNER JOIN shippers
+ON orders.ShipVia = shippers.ShipperID
+WHERE orderid IN (SELECT orderid 
                     FROM `order details`
                     WHERE ProductID = (SELECT ProductID 
                                           FROM products 
