@@ -1,15 +1,13 @@
-USE CarDealership;
-
 SELECT * FROM dealerships;
 
 
 SELECT v.*
 FROM vehicles v
 JOIN inventory i ON v.VIN = i.VIN
-WHERE i.dealership_id = {dealership_id};
+WHERE i.dealership_id = "1HGCM82633A789012"
 
 
-SELECT * FROM vehicles WHERE VIN = '1HGCM82633A123456}';
+SELECT * FROM vehicles WHERE VIN = '1HGCM82633A123456';
 
 
 SELECT d.*
