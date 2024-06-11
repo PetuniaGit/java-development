@@ -24,8 +24,10 @@ public class NorthwindTraders2 {
                     Price\t%.2f
                     Stock\t%d
                     ------------------
-                    """,resultSet.getInt("productid"),resultSet.getString("productname"),
-                    resultSet.getDouble("unitprice"),resultSet.getInt("unitsinstock"));
+                    """,resultSet.getInt("productid"),
+                    resultSet.getString("productname"),
+                    resultSet.getDouble("unitprice"),
+                    resultSet.getInt("unitsinstock"));
         }
 
 
