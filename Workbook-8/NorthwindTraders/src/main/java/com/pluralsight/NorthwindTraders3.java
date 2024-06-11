@@ -97,8 +97,11 @@ public class NorthwindTraders3 {
                         Country:\t%s
                         Phone Number:\t%s
                         -----------------------------------
-                        """, resultSet.getString("contactname"),resultSet.getString("companyname"),
-                        resultSet.getString("city"), resultSet.getString("country"),resultSet.getString("phone"));
+                        """, resultSet.getString("contactname"),
+                        resultSet.getString("companyname"),
+                        resultSet.getString("city"),
+                        resultSet.getString("country"),
+                        resultSet.getString("phone"));
             }
 
         } catch (SQLException e) {
