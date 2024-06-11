@@ -22,7 +22,7 @@ public class NorthwindTraders4 {
         // Configure the datasource
         dataSource.setUrl("jdbc:mysql://localhost:3306/northwind");
         dataSource.setUsername("root");
-        dataSource.setPassword("password");
+        dataSource.setPassword("Password345@");
 
         String customerQuery = "SELECT * FROM customers ORDER BY country";
         String productQuery = "SELECT * FROM products ORDER BY productid";
