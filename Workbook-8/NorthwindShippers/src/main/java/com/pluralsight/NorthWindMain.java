@@ -13,7 +13,7 @@ public class NorthWindMain {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:mysql://localhost:3306/northwind");
         dataSource.setUsername("root");
-        dataSource.setPassword("password");
+        dataSource.setPassword("Password345@");
 
         // Create the data manager
         ShipperDao dataManager = new ShipperDao(dataSource);
