@@ -96,7 +96,7 @@ public class AccountingLedger {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String DateTime = currentTime.format(fmt);
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              PreparedStatement pstmt = conn.prepareStatement("INSERT INTO transactions (datetime, description, vendor, amount) VALUES (?, ?, ?, ?)")) {
             pstmt.setString(1, DateTime);
             pstmt.setString(2, paymentDescription);
@@ -139,7 +139,7 @@ public class AccountingLedger {
 
     public static void allTransaction() {
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM transactions ORDER BY datetime DESC")) {
             while (rs.next()) {
@@ -158,7 +158,7 @@ public class AccountingLedger {
     // Create the viewDeposits method.
     public static void viewDeposits() {
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM transactions WHERE amount > 0 ORDER BY datetime DESC")) {
             while (rs.next()) {
@@ -177,7 +177,7 @@ public class AccountingLedger {
     // Create the viewPayments method.
     public static void viewPayments() {
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM transactions WHERE amount < 0 ORDER BY datetime DESC")) {
             while (rs.next()) {
@@ -227,7 +227,7 @@ public class AccountingLedger {
     // Create monthToDate method.
     public static void monthToDate() {
         boolean foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE MONTH(datetime) = ? AND YEAR(datetime) = ? ORDER BY datetime DESC")) {
             pstmt.setInt(1, thisMonth);
             pstmt.setInt(2, thisYear);
@@ -250,7 +250,7 @@ public class AccountingLedger {
         foundTransaction = false;
         int prevMonth = thisMonth == 1 ? 12 : thisMonth - 1;
         int year = thisMonth == 1 ? thisYear - 1 : thisYear;
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE MONTH(datetime) = ? AND YEAR(datetime) = ? ORDER BY datetime DESC")) {
             pstmt.setInt(1, prevMonth);
             pstmt.setInt(2, year);
@@ -271,7 +271,7 @@ public class AccountingLedger {
     // Create yearToDate method.
     public static void yearToDate() {
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE YEAR(datetime) = ? ORDER BY datetime DESC")) {
             pstmt.setInt(1, thisYear);
             ResultSet rs = pstmt.executeQuery();
@@ -291,7 +291,7 @@ public class AccountingLedger {
     // Create previousYear method.
     public static void previousYear() {
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE YEAR(datetime) = ? ORDER BY datetime DESC")) {
             pstmt.setInt(1, thisYear - 1);
             ResultSet rs = pstmt.executeQuery();
@@ -313,7 +313,7 @@ public class AccountingLedger {
         System.out.print("Please enter the name of the vendor: ");
         String vendor = scan.nextLine();
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE vendor = ? ORDER BY datetime DESC")) {
             pstmt.setString(1, vendor);
             ResultSet rs = pstmt.executeQuery();
