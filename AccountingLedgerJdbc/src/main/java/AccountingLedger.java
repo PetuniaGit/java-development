@@ -67,7 +67,7 @@ public class AccountingLedger {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String DateTime = currentTime.format(fmt);
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
              PreparedStatement pstmt = conn.prepareStatement("INSERT INTO transactions (datetime, description, vendor, amount) VALUES (?, ?, ?, ?)")) {
             pstmt.setString(1, DateTime);
             pstmt.setString(2, depositDescription);
