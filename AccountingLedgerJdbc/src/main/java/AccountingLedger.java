@@ -201,6 +201,7 @@ public class AccountingLedger {
         System.out.println("Enter 3 to search transactions of current Year.");
         System.out.println("Enter 4 to search transactions of Previous Year");
         System.out.println("Enter 5 to search by Vendor");
+        System.out.println("Enter 6 for Custom Search");
         System.out.println("Enter 7 to go Back");
 
         int userInput = scan.nextInt();
@@ -216,6 +217,8 @@ public class AccountingLedger {
             previousYear();
         } else if (userInput == 5) {
             searchByVendor();
+        } else if (userInput == 6) {
+            customSearch();
         } else if (userInput == 7) {
             ledger();
         } else {
@@ -223,11 +226,10 @@ public class AccountingLedger {
             userInput = scan.nextInt();
         }
     }
-
     // Create monthToDate method.
     public static void monthToDate() {
         boolean foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root", "Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE MONTH(datetime) = ? AND YEAR(datetime) = ? ORDER BY datetime DESC")) {
             pstmt.setInt(1, thisMonth);
             pstmt.setInt(2, thisYear);
@@ -250,7 +252,7 @@ public class AccountingLedger {
         foundTransaction = false;
         int prevMonth = thisMonth == 1 ? 12 : thisMonth - 1;
         int year = thisMonth == 1 ? thisYear - 1 : thisYear;
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root", "Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE MONTH(datetime) = ? AND YEAR(datetime) = ? ORDER BY datetime DESC")) {
             pstmt.setInt(1, prevMonth);
             pstmt.setInt(2, year);
@@ -271,7 +273,7 @@ public class AccountingLedger {
     // Create yearToDate method.
     public static void yearToDate() {
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root", "Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE YEAR(datetime) = ? ORDER BY datetime DESC")) {
             pstmt.setInt(1, thisYear);
             ResultSet rs = pstmt.executeQuery();
@@ -291,7 +293,7 @@ public class AccountingLedger {
     // Create previousYear method.
     public static void previousYear() {
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root", "Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE YEAR(datetime) = ? ORDER BY datetime DESC")) {
             pstmt.setInt(1, thisYear - 1);
             ResultSet rs = pstmt.executeQuery();
@@ -313,7 +315,7 @@ public class AccountingLedger {
         System.out.print("Please enter the name of the vendor: ");
         String vendor = scan.nextLine();
         foundTransaction = false;
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root","Password345@");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root", "Password345@");
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM transactions WHERE vendor = ? ORDER BY datetime DESC")) {
             pstmt.setString(1, vendor);
             ResultSet rs = pstmt.executeQuery();
@@ -329,6 +331,44 @@ public class AccountingLedger {
         }
         viewReports();
     }
+
+    // Create the customSearch method.
+    public static void customSearch() {
+        System.out.println("Enter search criteria (leave blank to ignore a field):");
+
+        System.out.print("Start Date (yyyy-MM-dd): ");
+        String startDate = scan.nextLine().trim();
+        System.out.print("End Date (yyyy-MM-dd): ");
+        String endDate = scan.nextLine().trim();
+        System.out.print("Description: ");
+        String description = scan.nextLine().trim();
+        System.out.print("Vendor: ");
+        String vendor = scan.nextLine().trim();
+        System.out.print("Amount: ");
+        String amountStr = scan.nextLine().trim();
+
+        StringBuilder query = new StringBuilder("SELECT * FROM transactions WHERE 1=1");
+        if (!startDate.isEmpty()) query.append(" AND datetime >= '").append(startDate).append(" 00:00:00'");
+        if (!endDate.isEmpty()) query.append(" AND datetime <= '").append(endDate).append(" 23:59:59'");
+        if (!description.isEmpty()) query.append(" AND description LIKE '%").append(description).append("%'");
+        if (!vendor.isEmpty()) query.append(" AND vendor LIKE '%").append(vendor).append("%'");
+        if (!amountStr.isEmpty()) query.append(" AND amount = ").append(Double.parseDouble(amountStr));
+        query.append(" ORDER BY datetime DESC");
+
+        foundTransaction = false;
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/AccountingLedger", "root", "Password345@");
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query.toString())) {
+            while (rs.next()) {
+                System.out.println(rs.getTimestamp("datetime") + "|" + rs.getString("description") + "|" + rs.getString("vendor") + "|" + rs.getDouble("amount"));
+                foundTransaction = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (!foundTransaction) {
+            System.out.println("No transactions found for the given criteria.");
+        }
+        viewReports();
+    }
 }
-
-
